@@ -1,24 +1,16 @@
-<html>
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false">
 
   <head>
     <link rel="icon" type="image/png" href="https://www.appitek.com/img/logos/automation-search-logo.png"/>  
     <link rel="stylesheet" type="text/css" href="https://appitek.com/ui/css/style.css"/>
     <script type="text/javascript" src="https://appitek.com/ui/fa.js"></script>
-    <script type="text/javascript" src="js/libs/vue.js"></script>
-    <script type="text/javascript" src="js/libs/forcetek.js"></script>
-    <script type="text/javascript" src="js/modules/force.js"></script>
-    <script type="text/javascript" src="js/modules/metadata.js"></script> 
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/vue-mod.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/forcetek.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/modules/force.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/modules/metadata.js')}"></script> 
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AutomationSearchResource, 'css/style.css')}"/>
     <meta charset="UTF-8"/>
     <title>Appitek | Automation Search</title>
-    <meta property="og:image" content="https://www.appitek.com/img/logos/automation-search-logo.png"/>
-    <meta property="og:title" content="Appitek | Automation Search"/>
-    <meta property="og:description" content="Search across all of your Salesforce 
-      automations for keywords, including Validation Rules, Workflows, Process 
-      Builders, Triggers, and Apex Classes."/>
-    <meta property="og:url" content="https://www.appitek.com/pages/tools/automation-search.html"/>
-    <meta property="og:site_name" content="Appitek | Automation Search"/>
-    <meta property="og:type" content="website"/>
   </head>
 
   <body class="aptk">
@@ -29,7 +21,11 @@
         
         <nav class="aptk-nav">
           <ul class="aptk-float--l">
-            <li v-on:click="logoutUser()">Logout</li>
+            <li>
+              <a style="color: rgba(224, 229, 235, 0.9); text-decoration: none" href="/">
+                Back to Salesforce
+              </a>
+            </li>
             <li>
               <a style="color: rgba(224, 229, 235, 0.9); text-decoration: none" href="https://www.appitek.com/pages/feedback.html" target="_blank">
                 Give Feedback
@@ -42,7 +38,7 @@
           <div class="aptk-header--info">
             <img height="50px" src="https://www.appitek.com/img/logos/automation-search-logo.png"/>
             <h1>Automation Search</h1>
-            <h2>{{ email }}</h2>
+            <h2>{!$User.Email}</h2>
           </div>
           <div class="aptk-header--actions">
             <div class="aptk-group">
@@ -50,7 +46,7 @@
                 <input v-model="query" placeholder="Search.."/>
                 <i class="fas fa-search"></i>
               </div>
-              <button v-on:click="runSearch()" class="aptk-button aptk-button--blue">
+              <button v-on-click="runSearch()" class="aptk-button aptk-button--blue">
                 Run Search
               </button>
             </div>
@@ -77,7 +73,7 @@
               <tbody>
                 <tr v-for="a in filteredAutomation">
                   <td class="aptk-am--name">
-                    <a v-bind:href="url + '/' + a.Id" target="_blank">
+                    <a v-bind-href="url + '/' + a.Id" target="_blank">
                       <div class="aptk-am--name">{{ a.Name }}</div>
                     </a>
                   </td>
@@ -112,7 +108,7 @@
           </table>
         </div>
   
-        <div class="aptk-popup aptk-popup--splash" v-bind:class="{'aptk-hide': authenticated }">
+        <div class="aptk-popup aptk-popup--splash" v-bind-class="{'aptk-hide': authenticated }">
           <table>
             <tr>
               <td>
@@ -125,9 +121,8 @@
                     <img class="aptk-popup--splash_icon" src="https://www.appitek.com/img/logos/automation-search-logo.png"/>
                     <h1>Automation Search</h1>
                     <p>
-                      Please select the items you want to search across, and 
-                      log into your Salesforce Environment to begin. 
-                      <br/><br/>
+                      Please select the items you want to search across.
+                      <br/>
                       This will load the metadata for each record.
                     </p>
                     <br/>
@@ -177,15 +172,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="aptk-input">
-                      <select v-model="options.environment">
-                        <option>Sandbox</option>
-                        <option>Production</option>
-                      </select>
-                      <label>Environment</label>
-                      <span><i class="fas fa-caret-down"></i></span>
-                    </div>
-                    <div v-on:click="loginUser()" class="aptk-button aptk-button--blue aptk-x1">Login</div>
+                    <div style="margin-top: 10px" v-on-click="loginSession('{!$Api.Session_ID}')" class="aptk-button aptk-button--blue aptk-x1">Start</div>
                   </div>
                 </div>
               </td>
@@ -201,10 +188,9 @@
   
       </div>
   
-  
-      <script type="text/javascript" src="js/app.js"></script>
+      <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/app.js')}"></script>
     
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141145289-1"></script>
+      <script src="https://www.googletagmanager.com/gtag/js?id=UA-141145289-1"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -214,4 +200,4 @@
   
     </body>
 
-</html>
+</apex:page>

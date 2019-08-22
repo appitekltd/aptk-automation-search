@@ -43,8 +43,8 @@ var $App = new Vue({
             }
           }
         } else if (a.Type == 'ApexClass' || a.Type == 'ApexTrigger') {
-          if (!a.Body) return false;
-          var lines = a.Body.split(/\n/);
+          if (!a.Metadata) return false;
+          var lines = a.Metadata.split(/\n/);
           for (var b = 0; b < lines.length; b++) {
             var line = lines[b].toLowerCase();
             if (line.indexOf(query) != -1) {
@@ -225,6 +225,14 @@ var $App = new Vue({
         $App.loadData();
       });
     },
+
+
+    loginSession: function(session) {
+      $Force[$App.options.environment].session(session);
+      $App.authenticated = true;
+      $App.loadData();
+    },
+
     /*
      *  @method $App.logoutUser()
      *  @desc Logs a user out by resetting all values on the app, as if they
@@ -322,6 +330,7 @@ var $App = new Vue({
       console.log('CALLING');
       $App.loading = 'Loading metadata for ' + record.Name + '..';
       var object = record.Type;
+      if (object == 'ApexClass' || object == 'ApexTrigger') return callback();
       // if it's a flow we need to use the active or latest version id as the id
       // rather than the actual record id
       var id = record._raw.ActiveVersionId != null ? 

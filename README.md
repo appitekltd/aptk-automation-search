@@ -8,5 +8,10 @@ It is currently hosted on our [website](https://www.appitek.com/tools/automation
 
 None of your data leaves the platform or is stored in local data / cookies.
 
+## Using within Salesforce ##
+If you want to use this tool directly in Salesforce rather than from our website, you can install [this unmanaged package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4J000000rMX0).
+
+This package contains the `AutomationSearch.vfp` Visualforce Page, the `AutomationSearchResource` Static Resource, and a custom VF Tab for the page. 
+
 ## Bugs ##
 If you find any issues please let us know! We try our best to keep our free tools updated and in working order, but cannot be held responsible for any issues that occur from using them.
