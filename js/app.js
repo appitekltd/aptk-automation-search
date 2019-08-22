@@ -225,14 +225,18 @@ var $App = new Vue({
         $App.loadData();
       });
     },
-
-
+    /*
+     *  @method $App.loginSession()
+     *  @desc Logs a user in via their Session Id. Used via the VF page to skip
+     *    authenticating.
+     * 
+     *  @return {Null}
+     */
     loginSession: function(session) {
       $Force[$App.options.environment].session(session);
       $App.authenticated = true;
       $App.loadData();
     },
-
     /*
      *  @method $App.logoutUser()
      *  @desc Logs a user out by resetting all values on the app, as if they
