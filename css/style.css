@@ -28,3 +28,22 @@
 .aptk-am--name a {
   color: #21A2A8
 }
+
+.aptk-am--footer {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10000;
+}
+.aptk-am--footer p {
+  color: #fff;
+  width: 115px;
+}
+.aptk-am--footer p,
+.aptk-am--footer img {
+  float: left;
+}
+.aptk-am--footer img {
+  height: 30px;
+  width: 30px;
+}
