@@ -1,0 +1,211 @@
+<html>
+
+  <head>
+    <link rel="icon" type="image/png" href="https://www.appitek.com/img/logos/automation-search-logo.png"/>  
+    <link rel="stylesheet" type="text/css" href="https://appitek.com/ui/css/style.css"/>
+    <script type="text/javascript" src="https://appitek.com/ui/fa.js"></script>
+    <script type="text/javascript" src="js/libs/vue.js"></script>
+    <script type="text/javascript" src="js/libs/forcetek.js"></script>
+    <script type="text/javascript" src="js/modules/force.js"></script>
+    <script type="text/javascript" src="js/modules/metadata.js"></script> 
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <meta charset="UTF-8"/>
+    <title>Appitek | Automation Search</title>
+    <meta property="og:image" content="https://www.appitek.com/img/logos/automation-search-logo.png"/>
+    <meta property="og:title" content="Appitek | Automation Search"/>
+    <meta property="og:description" content="Search across all of your Salesforce 
+      automations for keywords, including Validation Rules, Workflows, Process 
+      Builders, Triggers, and Apex Classes."/>
+    <meta property="og:url" content="https://www.appitek.com/pages/tools/automation-search.html"/>
+    <meta property="og:site_name" content="Appitek | Automation Search"/>
+    <meta property="og:type" content="website"/>
+  </head>
+
+  <body class="aptk">
+
+      <div id="search">
+  
+        <a id="link" style="display: none"></a>
+        
+        <nav class="aptk-nav">
+          <ul class="aptk-float--l">
+            <li v-on:click="logoutUser()">Logout</li>
+            <li>
+              <a style="color: rgba(224, 229, 235, 0.9); text-decoration: none" href="https://www.appitek.com/pages/feedback.html" target="_blank">
+                Give Feedback
+              </a>
+            </li>
+          </ul>
+        </nav>
+  
+        <header class="aptk-header">
+          <div class="aptk-header--info">
+            <img height="50px" src="https://www.appitek.com/img/logos/automation-search-logo.png"/>
+            <h1>Automation Search</h1>
+            <h2>{{ email }}</h2>
+          </div>
+          <div class="aptk-header--actions">
+            <div class="aptk-group">
+              <div class="aptk-input aptk-input--nolabel aptk-input--iconleft">
+                <input v-model="query" placeholder="Search.."/>
+                <i class="fas fa-search"></i>
+              </div>
+              <button v-on:click="runSearch()" class="aptk-button aptk-button--blue">
+                Run Search
+              </button>
+            </div>
+          </div>
+        </header>
+  
+        <main class="aptk-canvas aptk-canvas--nosidebar" style="padding: 40px">
+  
+          <div class="aptk-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th v-if="options.rules == true || options.apex == true">Object</th>
+                  <th v-if="options.packages == true">Package</th>
+                  <th>Status</th>
+                  <th>Created Date</th>
+                  <th>Last Modified Date</th>
+                  <th>Last Modified By</th>
+                  <th>Found In</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="a in filteredAutomation">
+                  <td class="aptk-am--name">
+                    <a v-bind:href="url + '/' + a.Id" target="_blank">
+                      <div class="aptk-am--name">{{ a.Name }}</div>
+                    </a>
+                  </td>
+                  <td>{{ a.Type }}</td>
+                  <td v-if="options.rules == true || options.apex == true">{{ a.Object }}</td>
+                  <td v-if="options.packages == true">{{ a.Package }}</td>
+                  <td>{{ a.Status }}</td>
+                  <td>{{ a.CreatedDate }}</td>
+                  <td>{{ a.LastModifiedDate }}</td>
+                  <td>{{ a.LastModifiedBy }}</td>
+                  <td>
+                    <div v-for="item in a.Locations">
+                      <div v-if="item.Line">{{ item.Line }}</div>
+                      <div v-else="">{{ item.Type }} {{ item.Name }}</div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+        </main>
+  
+        <div class="aptk-loading" v-if="loading != ''">
+          <table>
+            <tr>
+              <td>
+                <i class="fas fa-cog fa-spin"></i>
+                <p>{{ loading }}</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+  
+        <div class="aptk-popup aptk-popup--splash" v-bind:class="{'aptk-hide': authenticated }">
+          <table>
+            <tr>
+              <td>
+                <div class="aptk-popup--overlay"></div>
+                <div class="aptk-popup--wrapper" style="max-width: 360px">
+                  <div class="aptk-popup--wrapper_header">
+                    <img class="aptk-popup--splash_logo" src="https://www.appitek.com/img/logo.png"/>
+                  </div>
+                  <div class="aptk-popup--wrapper_content">
+                    <img class="aptk-popup--splash_icon" src="https://www.appitek.com/img/logos/automation-search-logo.png"/>
+                    <h1>Automation Search</h1>
+                    <p>
+                      Please select the items you want to search across, and 
+                      log into your Salesforce Environment to begin. 
+                      <br/><br/>
+                      This will load the metadata for each record.
+                    </p>
+                    <br/>
+                    <div class="aptk-grid">
+                      <div class="aptk-grid--50">
+                          <div class="aptk-input">
+                            <input v-model="options.flows" type="checkbox"/>
+                            <label>Include Flows &amp; Processes</label>
+                            <span class="on"><i class="fas fa-check"></i></span>
+                            <span class="off"><i class="fas fa-times"></i></span>
+                          </div>
+                      </div>
+                      <div class="aptk-grid--50">
+                        <div class="aptk-input">
+                          <input v-model="options.apex" type="checkbox"/>
+                          <label>Include Classes &amp; Triggers</label>
+                          <span class="on"><i class="fas fa-check"></i></span>
+                          <span class="off"><i class="fas fa-times"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="aptk-grid">
+                      <div class="aptk-grid--50">
+                        <div class="aptk-input">
+                          <input v-model="options.rules" type="checkbox"/>
+                          <label>Include Validation Rules</label>
+                          <span class="on"><i class="fas fa-check"></i></span>
+                          <span class="off"><i class="fas fa-times"></i></span>
+                        </div>
+                      </div>
+                      <div class="aptk-grid--50">
+                        <div class="aptk-input">
+                          <input v-model="options.workflows" type="checkbox"/>
+                          <label>Include Workflow Rules</label>
+                          <span class="on"><i class="fas fa-check"></i></span>
+                          <span class="off"><i class="fas fa-times"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="aptk-grid">
+                      <div class="aptk-grid--50">
+                        <div class="aptk-input">
+                          <input v-model="options.packages" type="checkbox"/>
+                          <label>Include Packaged Components</label>
+                          <span class="on"><i class="fas fa-check"></i></span>
+                          <span class="off"><i class="fas fa-times"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="aptk-input">
+                      <select v-model="options.environment">
+                        <option>Sandbox</option>
+                        <option>Production</option>
+                      </select>
+                      <label>Environment</label>
+                      <span><i class="fas fa-caret-down"></i></span>
+                    </div>
+                    <div v-on:click="loginUser()" class="aptk-button aptk-button--blue aptk-x1">Login</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+  
+      </div>
+  
+  
+      <script type="text/javascript" src="js/app.js"></script>
+      
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141145289-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-141145289-1');
+        </script>
+  
+    </body>
+
+</html>
