@@ -6,7 +6,6 @@
     <script type="text/javascript" src="https://appitek.com/ui/fa.js"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/vue-mod.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/forcetek.js')}"></script>
-    <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/modules/force.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/modules/metadata.js')}"></script> 
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AutomationSearchResource, 'css/style.css')}"/>
     <meta charset="UTF-8"/>
@@ -21,11 +20,6 @@
         
         <nav class="aptk-nav">
           <ul class="aptk-float--l">
-            <li>
-              <a style="color: rgba(224, 229, 235, 0.9); text-decoration: none" href="/">
-                Back to Salesforce
-              </a>
-            </li>
             <li>
               <a style="color: rgba(224, 229, 235, 0.9); text-decoration: none" href="https://www.appitek.com/pages/feedback.html" target="_blank">
                 Give Feedback
@@ -187,6 +181,18 @@
         </div>
   
       </div>
+
+      <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/modules/force.js')}"></script>
+      <script type="text/javascript">
+        // create a new forcetek client using the current page url as the base
+        $Force.Salesforce = new Forcetek({
+          callbackUrl: 'https://www.appitek.com/success.html',
+          consumerKey: '3MVG95NPsF2gwOiM6f7BlORxLo8.feuLKT4GS3Zg8NNZAQXXS0M_b1fvWajpodl.zqD0L.brxxkROjOIdaEU7',
+          proxyUrl: 'https://www.appitek.com/tools/forcetek/proxy.php',
+          loginUrl: window.location.href.split('.com')[0] + '.com',
+          apiVersion: 'v42.0'
+        });
+      </script>
   
       <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/app.js')}"></script>
     

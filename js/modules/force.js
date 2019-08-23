@@ -16,5 +16,6 @@ var $Force = {
     proxyUrl: 'https://www.appitek.com/tools/forcetek/proxy.php',
     loginUrl: 'https://login.salesforce.com/',
     apiVersion: 'v42.0'
-  })
+  }),
+  'Salesforce': {}
 };
