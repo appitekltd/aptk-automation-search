@@ -102,7 +102,10 @@ var $App = new Vue({
     checkLoaded: function() {
       $App.processed ++;
       if ($App.processed == $App.total) {
-        $App.parseAutomations(0, $App.automation, function() {
+        var nonApex = $App.automation.filter(function(a) {
+          return a.Type != 'ApexClass' && a.Type != 'ApexTrigger';
+        });
+        $App.parseAutomations(0, nonApex, function() {
           $App.loading = '';
         });
       }

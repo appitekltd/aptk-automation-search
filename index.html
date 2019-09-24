@@ -90,7 +90,7 @@
                   <td>{{ a.LastModifiedBy }}</td>
                   <td style="line-height: 20px">
                     <div v-for="item in a.Locations">
-                      <div v-if="item.Line">{{ item.Line }}</div>
+                      <div v-if="item.Line">Line: {{ item.Line }}</div>
                       <div v-else="">{{ item.Type }} {{ item.Name }}</div>
                     </div>
                   </td>
