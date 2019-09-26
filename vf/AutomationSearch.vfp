@@ -1,9 +1,9 @@
 <apex:page sidebar="false" showHeader="false" standardStylesheets="false">
 
   <head>
-    <link rel="icon" type="image/png" href="https://www.appitek.com/img/logos/automation-search-logo.png"/>  
-    <link rel="stylesheet" type="text/css" href="https://appitek.com/ui/css/style.css"/>
-    <script type="text/javascript" src="https://appitek.com/ui/fa.js"></script>
+    <link rel="icon" type="image/png" href="{!URLFOR($Resource.AutomationSearchResource, 'img/automation-search-logo.png')}"/>  
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AutomationSearchResource, 'css/aui.css')}"/>
+    <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/fa.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/vue-mod.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/libs/forcetek.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/modules/metadata.js')}"></script> 
@@ -30,7 +30,7 @@
   
         <header class="aptk-header">
           <div class="aptk-header--info">
-            <img height="50px" src="https://www.appitek.com/img/logos/automation-search-logo.png"/>
+            <img height="50px" src="{!URLFOR($Resource.AutomationSearchResource, 'img/automation-search-logo.png')}"/>
             <h1>Automation Search</h1>
             <h2>{!$User.Email}</h2>
           </div>
@@ -109,10 +109,10 @@
                 <div class="aptk-popup--overlay"></div>
                 <div class="aptk-popup--wrapper" style="max-width: 360px">
                   <div class="aptk-popup--wrapper_header">
-                    <img class="aptk-popup--splash_logo" src="https://www.appitek.com/img/logo.png"/>
+                    <img class="aptk-popup--splash_logo" src="{!URLFOR($Resource.AutomationSearchResource, 'img/logo.png')}"/>
                   </div>
                   <div class="aptk-popup--wrapper_content">
-                    <img class="aptk-popup--splash_icon" src="https://www.appitek.com/img/logos/automation-search-logo.png"/>
+                    <img class="aptk-popup--splash_icon" src="{!URLFOR($Resource.AutomationSearchResource, 'img/automation-search-logo.png')}"/>
                     <h1>Automation Search</h1>
                     <p>
                       Please select the items you want to search across.
@@ -175,7 +175,7 @@
           <a href="https://github.com/appitekltd/aptk-automation-search" target="_blank">
             <div class="aptk-am--footer">
               <p>Fork on GitHub</p>
-              <img src="https://www.appitek.com/img/footer-github-dark.png"/>
+              <img src="{!URLFOR($Resource.AutomationSearchResource, 'img/footer-github-dark.png')}"/>
             </div>
           </a>
         </div>
@@ -195,14 +195,6 @@
       </script>
   
       <script type="text/javascript" src="{!URLFOR($Resource.AutomationSearchResource, 'js/app.js')}"></script>
-    
-      <script src="https://www.googletagmanager.com/gtag/js?id=UA-141145289-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-141145289-1');
-      </script>
   
     </body>
 

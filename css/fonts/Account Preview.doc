@@ -1,0 +1,87 @@
+<html xmlns="http://www.w3.org/TR/REC-html40" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
+
+    <head>
+<meta HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE" />
+<meta HTTP-EQUIV="Expires" content="Mon, 01 Jan 1990 12:00:00 GMT" />
+
+      <meta charset="utf-8" />
+      <style>
+        @page Section1 {
+          margin-left: 0;
+          margin-right: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+	      mso-header-margin: 0;
+	      mso-footer-margin: 0;
+          mso-header: wvr-page-header;
+          mso-footer: wvr-page-footer;
+          mso-first-header: ; 
+          mso-first-footer: ;
+          mso-title-page: ;
+        }
+        table[data-cover="first"] {
+          margin-left: 0;
+          margin-right: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+	      mso-header-margin: 0;
+	      mso-footer-margin: 0;
+          mso-header: none;
+          mso-footer: none;
+        }
+        table[data-cover="last"] {
+          margin-left: 0;
+          margin-right: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+	      mso-header-margin: 0;
+	      mso-footer-margin: 0;
+          mso-header: none;
+          mso-footer: none;
+        }
+        div.Section1 {
+          page: Section1;
+        }
+        ol.toc a::after { content: leader(\'.\') target-counter(attr(href), page); }
+        div.wvr-page-header{ 
+          position: running(wvr-page-header); left: 0; right: 0; 
+        }
+        div.wvr-page-footer{ 
+          position: running(wvr-page-footer); left: 0; right: 0; 
+        }
+        div.wvr-first-page-header{ 
+          position: running(wvr-first-page-header); left: 0; right: 0; 
+        }
+        div.wvr-first-page-footer{ 
+          position: running(wvr-first-page-footer); left: 0; right: 0; 
+        }
+        p.MsoToc1, li.MsoToc1, div.MsoToc1 {
+          mso-style-update: auto;
+          tab-stops: right dotted 100%;
+        }
+        .first-page { page: first_page; }
+        .last-page { page: last_page; }
+        
+      </style>
+      <title>Word Document</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]>
+    </head>
+      
+    <body>
+        
+      <div class="Section1"><table data-type="WordPage" width="754" border="0" data-cover="" style="background-color: #ffffff; margin-top: 20px; margin-left: 20px; margin-bottom: 20px; margin-right: 20px;  vertical-align: top; border-collapse: collapse; min-height: 1083px !important; width: 754px !important; margin: 0px !important; padding: 0px !important; position: relative !important ; mso-border-top-alt: 0 none #ffffff; mso-border-left-alt: 0 none #ffffff; mso-border-bottom-alt: 0 none #ffffff; mso-border-right-alt: 0 none #ffffff;"><tr width="100%"><td width="100%"><table data-type="TableText" border-collapse="collapse" border="0" cellspacing="0" cellpadding="0" style="vertical-align: top; width: 100%"><tr data-type="TableRow"><td valign="top" data-type="TableCell" style="height: auto; width: auto; border-width: 0px; border-style: solid; border-color: #000000; background-color: #59dbd5; color: #000000; font-size: 12px; font-family: Helvetica, sans-serif; margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;  position: relative; z-index: 10;  ; mso-border-top-alt: 0 none #ffffff; mso-border-left-alt: 0 none #ffffff; mso-border-bottom-alt: 0 none #ffffff; mso-border-right-alt: 0 none #ffffff;"><div><font style="font-size: 18px;"><b>HELLO</b></font></div></td></tr></table></td></tr></table>
+          
+        <div style="width: 100%; height: auto; margin: 0 0 0 100in; padding: 0">
+          <div id="wvr-page-header" style="mso-element:header"></div>
+          <div id="wvr-page-footer" style="mso-element:footer"></div>  
+          <div id="wvr-first-page-header" style="mso-element:header"></div>
+          <div id="wvr-first-page-footer" style="mso-element:footer"></div>
+        </div>
+        
+      </div>
+        
+        
+      
+      
+    </body>
+      
+  </html>
